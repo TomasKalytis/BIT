@@ -1,7 +1,56 @@
-.may {
-    border: 1px solid black;
-}
 .divas{
-    background-color: aqua;
-    width: 200px;
+    width: 800px;
+    display: flex;
+    border: none;
+    }
+.table{
+text-align: center;
+width: 100%;
+}
+.number{
+color: red;
+}
+.text{
+    text-align: center;
+    text-size-adjust: 20;
+    color: rgb(221, 27, 27);
+    text-decoration: solid;
+}
+.color{
+    color: black;
+}
+.table1{
+    text-align: left;
+    width: 100%;
+}
+.divas1{
+    width: 1000px;
+    display: flex;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+}
+.divas2{
+    width: 1000px;
+    display: flex;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+}
+.divas3{
+    width: 1000px;
+    display: flex;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.divas4{
+    width: 1000px;
+    display: flex;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+/*tbody div:last-child{
+    border-right: 1px solid black;
 }
