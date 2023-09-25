@@ -4,22 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML kontaktiė forma</title>
+    <link rel="stylesheet" href="formastiliu.css">
 </head>
-<style>
-    .box{
-        width: 500px;
-        height: 800px;
-        background-color: #121212;
-    }
-    .absolute{
-        position: absolute;
-        top: 10px;
-        left: 100px; 
-    }
-</style>
-<body>
-    <div class="box absolute">
 
-    </div>    
+<body>
+    <div class="box relative">
+        <div class="small-box">
+            <h1 class="fntsize"><a class="color2">Your Brand's Golas with</a> <a class="h1color">Beyond</a></h1>
+            <p class="fntsize1"><a class="color2">You will get a response within 24 hours. We will explain in details how we can help you fuel and grow your brand within the stated budget</a></p>
+        </div>
+    </div>
+    <div class="small-box1">
+        <form>
+            <div>
+                <input type="text" placeholder="Name">
+            </div>
+            <div>
+                <input type="email" placeholder="Email address" required>
+            </div>
+            <div>
+                <input type="phone" placeholder="Phone number">
+            </div>
+            <div>
+                <input type="budget" placeholder="Budget">
+            </div>
+            <div>
+                <input type="goals" placeholder="Golas">
+            </div>
+        </form>
+    </div>
+    <div class="small-box2">
+        <button class="buton1">Send Enquiry →</button>
+    </div>
+    
 </body>
 </html>

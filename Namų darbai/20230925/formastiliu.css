@@ -1,0 +1,68 @@
+.box{
+    width: 24%;
+    height: 800px;
+    background-color: #121212;
+}
+.relative{
+    position: relative;
+    top: 10px;
+    left: 0px 
+}
+.red{
+    background-color: red;
+}
+.black{
+    color: black;
+}
+.h1color{
+    color: #676CE7;
+}
+.color2{
+    color: white;
+}
+.small-box{
+    width: 285px;
+    height: 110px;
+    position: absolute;
+    top: 60px;
+    left: 80px;
+    text-align: center;
+}
+.small-box1{
+    width: 325px;
+    height: 240px;
+    position: absolute;
+    top: 220px;
+    left: 65px;
+}
+.small-box2{
+    width: 325px;
+    height: 100px;
+    position: absolute;
+    top: 500px;
+    left: 65px;
+}
+.fntsize{
+    font-size: 30px;
+    margin-top: 0;
+}
+.fntsize1{
+    font-size: 8px;
+    margin-bottom: 0;
+}
+input{
+width: 100%;
+height: 40px;
+border-top: none;
+border-left: none;
+border-right: none;
+background-color: #121212;
+color: white;
+}
+.buton1{
+width: 100%;
+height: 40px;
+border: none;
+color: white;
+background-color: #121212;
+}
