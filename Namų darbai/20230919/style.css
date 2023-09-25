@@ -13,13 +13,13 @@ color: red;
 .text{
     text-align: center;
     text-size-adjust: 20;
-    color: rgb(221, 27, 27);
+    color: black;
     text-decoration: solid;
 }
 .text1{
     text-align: center;
     font-size: 30px;
-    color: rgb(221, 27, 27);
+    color: black;
     text-decoration: solid;
 }
 .color{
