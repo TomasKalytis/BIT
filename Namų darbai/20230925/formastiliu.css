@@ -1,6 +1,6 @@
 .box{
-    width: 24%;
-    height: 800px;
+    width: 445px;
+    height: 540px;
     background-color: #121212;
 }
 .relative{
@@ -27,6 +27,7 @@
     top: 60px;
     left: 80px;
     text-align: center;
+    
 }
 .small-box1{
     width: 325px;
