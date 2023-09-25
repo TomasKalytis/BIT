@@ -1,0 +1,41 @@
+.main-table{
+    background-color: white;
+    border: none;
+    width: 100%;
+    
+}
+.row{
+    background-color: #f4f5f7;
+}
+}
+.main-table tr td{
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.main-table thead tr:nth-child(4){
+    border-bottom:  none;
+}
+.main-table table tr td:nth-child(3){
+    color: red;
+}
+.div1{
+    background-color: black;
+    border: 1px solid black;
+    color: white;
+    width:20%
+}
+.div2{
+    border: 1px solid #2a2a2a;
+    width: 20%;
+}
+.div3{
+    border: 1px solid #d7d7d7;
+    width: 20%;
+    background-color: #f9f9f9;
+}
+.margin{
+    margin-left: 800px;
+}
+.box{
+    display: flex;
+}
