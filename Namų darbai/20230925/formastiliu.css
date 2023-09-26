@@ -1,7 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background-color: #121212;
+}
+.container {
+    width: 445px;
+    margin: 0 auto;
+}
 .box{
     width: 445px;
-    height: 540px;
     background-color: #121212;
+    margin: 0 auto;
 }
 .relative{
     position: relative;
@@ -14,6 +24,7 @@
 .black{
     color: black;
 }
+
 .h1color{
     color: #676CE7;
 }
@@ -22,26 +33,8 @@
 }
 .small-box{
     width: 285px;
-    height: 110px;
-    position: absolute;
-    top: 60px;
-    left: 80px;
     text-align: center;
-    
-}
-.small-box1{
-    width: 325px;
-    height: 240px;
-    position: absolute;
-    top: 220px;
-    left: 65px;
-}
-.small-box2{
-    width: 325px;
-    height: 100px;
-    position: absolute;
-    top: 500px;
-    left: 65px;
+    margin: 0 auto;
 }
 .fntsize{
     font-size: 30px;
