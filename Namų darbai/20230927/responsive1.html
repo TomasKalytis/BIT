@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive1</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        
+        .conteiner {
+            width: 100%;
+            max-width: 1024px;
+            margin: 0 auto;
+            padding-left: 15px;
+            padding-right: 15px;
+            /* max-width, min-width, max-height, min-height */
+        }
+        .row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .col {
+            background-color: gray;
+            height: 40px;
+        }
+        .col-12 {
+            width: 100%;
+        }
+        .col-11 {
+            width: 91.66666666666667%;
+        }
+        .col-10 {
+            width: 83.33333333333333%;
+        }
+        .col-9 {
+            width: 75%;
+        }
+        .col-8 {
+            width: 66.66666666666667%;
+        }
+        .col-7 {
+            width: 58.33333333333333%;
+        }
+        .col-6 {
+            width: 50%;
+        }
+        .col-5 {
+            width: 41.666666%;
+        }
+        .col-4 {
+            width: 33.333333%;
+        }
+        .col-3 {
+            width: 25%;
+        }
+        .col-2 {
+            width: 16.666666%;
+        }
+        .col-1 {
+            width: 8.3333333%;
+        }
+        .red {
+            background-color: red;
+        }
+        .black {
+            background-color: black;
+        }
+        .height100 {
+            height: 100px;
+        }
+       @media screen and (max-width:786px) {
+        .red {
+            background-color: purple;
+        }
+        .black {
+            background-color: orange;
+        }
+       }
+       @media screen and (max-width:600px) {
+        .red {
+            background-color: rgb(10, 194, 93);
+        }
+        .black {
+            background-color: rgb(0, 174, 255);
+            /*display: none; - jeigu norime paslepti blokeli kai yra pasiekiama u=duota ekrano riba*/
+        }
+       }
+        
+      /* @media  and (min-width:768px) {
+        .red {
+            background-color: purple;
+        }
+        .black {
+            background-color: orange;
+        }
+       }*/
+    </style>
+</head>
+<body>
+    <div class="conteiner">
+        <div class="row">
+        <div class="red col-6 height100"></div>
+        <div class="black col-6 height100"></div>
+        </div>
+    </div>
+</body>
+</html>

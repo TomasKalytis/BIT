@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontaktinė Forms</title>
+</head>
+<style>
+    * {
+    box-sizing: border-box;
+}
+body {
+    background-color: #a0fcfb;
+}
+.container {
+    width: 445px;
+    margin: 0 auto;
+}
+.box{
+    padding-top: 20px;
+    width: 445px;
+    background-color: #a0fcfb;
+    margin: 0 auto;
+}
+.relative{
+    position: relative;
+    top: 10px;
+    left: 0px 
+}
+.small-box{
+    width: 285px;
+    text-align: center;
+    margin: 0 auto;
+}
+.fntsize{
+    font-size: 30px;
+    margin-top: 0;
+}
+.fntsize1{
+    font-size: 15px;
+    margin-bottom: 0;
+}
+input{
+width: 100%;
+height: 40px;
+font-size: 15px;
+background-color:#a0fcfb;
+border-top: none;
+border-left: none;
+border-right: none; 
+color: black;
+}
+.buton1{
+width: 100%;
+height: 40px;
+border: none;
+color: black;
+}
+.small-box1 {
+    margin-top: 50px;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+</style>
+<body>
+    <div class="container">
+        <div class="small-box">
+            <h1 class="fntsize">SUSISIEKITE SU MIMUS</h1>
+            <p class="fntsize1">Užpildykite kontaktinių duomenų formą. Įrašę duomenis, paspauskite mygtuką siųsti</p>
+        </div>
+        <div class="small-box1">
+            <form>
+                <div>
+                    <input type="text" placeholder="Vardas">
+                </div>
+                <div>
+                    <input type="number" min="0" max="100" placeholder="Amžius">
+                </div>
+                <div class="box">
+                    <button class="buton1"><a href="http://127.0.0.1:5500/Nam%C5%B3%20darbai/Penktadienio%20i%C5%A1%C5%A1%C5%ABkis/Mano%20Pirmas%20HTML%20Dokumentas.html">Siųsti</a></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
