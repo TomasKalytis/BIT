@@ -105,11 +105,10 @@ let h = rand(0, 25);
 let i = rand(0, 25);
 
 console.log('Gauti skaičiai', g, h, i);
-if(g > h && h < i && g > i || g > h && h < i && g < i){console.log('Vidurinis skaičius:', i)};
-if(g > h && h <= i && g < i){console.log('Vidurinis skaičius:', h)};
-if(g > h && h > i && g > i){console.log('Vidurinis skaičius:', h)};
-if(g < h && h > i && i < h){console.log('Vidurinis skaičius:', i)};
-if(g < h && h < i && i > g){console.log('Vidurinis skaičius:', h)};
+
+//gautasSkaicius(Math.mid(g, h, i));
+//console.log(gautasSkaicius);
+
 
 //Sukurti du kintamuosius. 
 //Jiems priskirti savo mylimo aktoriaus vardą ir pavardę kaip stringus. 
@@ -119,6 +118,11 @@ let inicialai = (vardas[0] + pavarde [0]);
 console.log('Inicialai:', inicialai);
 
 //Parašyti kodą, kuris generuotų atsitiktinį stringą iš lotyniškų mažųjų raidžių. Stringo ilgis 3 simboliai.
-let raide = "abcdefghijklmnopqrstuvwxyz";
-atsitiktineRaide = raide[(rand() * alphabet.length)];
-console.log('Atsitiktinė raidė:', atsitiktineRaide);
+let raides = 'abcdefghijklmnopqrstuvwxyz';
+let pirma = raides[rand(0, 26)];
+let antra = raides[rand(0, 26)];
+let trecia = raides[rand(0, 26)];
+
+console.log('Atsitiktinė raidė:', pirma, antra, trecia);
+
+
