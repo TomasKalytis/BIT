@@ -126,3 +126,6 @@ let trecia = raides[rand(0, 26)];
 console.log('Atsitiktinė raidė:', pirma, antra, trecia);
 
 
+
+
+
