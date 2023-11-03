@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaidimas2</title>
+    <style>
+        .row{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 10vh;
+            /* padding-left: 180px; */
+        }
+        .row1{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* gap: 50px; */
+        }
+        .box {
+            width: 500px;
+            height: 500px;
+            background-color: purple;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .box2area {
+            width: 500px;
+            height: 470px;
+            background-color: purple;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .box2 {
+            width: 40px;
+            height: 40px;
+            background-color: brown;
+            position: absolute;
+        }
+            
+        .count {
+          font-weight: bold;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          font-size: 20px;
+          color: white;
+        }
+        .buttons {
+          display: flex;
+          gap: 20px;
+          justify-content: center;
+        }
+    
+        .buttons button {
+          background: black;
+          color: white;
+          border-radius: 3px;
+          padding: 0.5rem 1rem;
+          border: none;
+          cursor: pointer;
+        }
+        .scores {
+            left: 50px;
+            color: black;
+            font-size: 20px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .result {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 24px;
+        color: black;
+        margin-top: 50px;
+        margin-left: 50px;
+    }
+        </style>
+</head>
+<body>
+    <div class="row1">
+        <div class="scores">
+            <div class="result">
+                <div>
+                    <div id="player-score">Žaidėjas: 0</div>
+                    <div id="computer-score">Kompiuteris: 0</div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="count">30 s</div>
+            <div class="box2"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="buttons">
+            <button class="start" onclick="startGame()">Start</button>
+        </div>
+    </div>
+    <script>
+        let second = 30;
+        let intervalSecond = null;
+        let isGameRunning = false;
+        let playerScore = 0;
+        let computerScore = 0;
+
+        const updateScores = () => {
+            document.querySelector("#player-score").textContent = `Žaidėjas: ${playerScore} taškai`;
+            document.querySelector("#computer-score").textContent = `Kompiuteris: ${computerScore} taškai`;
+        };
+
+        const showResult = (resultText) => {
+            const resultDiv = document.createElement("div");
+            resultDiv.textContent = resultText;
+            document.querySelector(".result").appendChild(resultDiv);
+            setTimeout(startGame, 3000); // Pradėti žaidimą iš naujo po 3 sekundžių
+        };
+
+        const startGame = () => {
+            if (!isGameRunning) {
+                isGameRunning = true;
+                intervalSecond = setInterval(() => {
+                    second--;
+                    if (second === 0) {
+                        clearInterval(intervalSecond);
+                        isGameRunning = false;
+                        showResult(playerScore > computerScore ? "Žaidėjas laimėjo!" :
+                            playerScore < computerScore ? "Kompiuteris laimėjo!" : "Lygiosios!");
+                        document.querySelector(".count").textContent = `0 s`;
+                    } else {
+                        document.querySelector(".count").textContent = `${second} s`;
+                        moveBox2Randomly();
+                    }
+                }, 1000);
+            } else {
+                clearInterval(intervalSecond);
+                isGameRunning = false;
+                second = 30;
+                document.querySelector(".count").textContent = `${second} s`;
+                updateScores();
+                const resultDiv = document.querySelector(".result");
+                if (resultDiv) {
+                    resultDiv.remove();
+                }
+                moveBox2Randomly();
+            }
+        };
+
+        const moveBox2Randomly = () => {
+            const box2 = document.querySelector(".box2");
+            const now = performance.now();
+            if (isGameRunning && now - lastPositionChange >= 1000) {
+                const box = document.querySelector(".box");
+                const maxWidth = box.clientWidth - box2.clientWidth;
+                const maxHeight = box.clientHeight - box2.clientHeight;
+
+                const newX = Math.floor(Math.random() * maxWidth);
+                const newY = Math.floor(Math.random() * maxHeight);
+
+                box2.style.left = newX + "px";
+                box2.style.top = newY + "px";
+                const randomColor = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
+                box2.style.backgroundColor = randomColor;
+                lastPositionChange = now;
+            }
+        };
+
+        let lastPositionChange = 0; // Inicializuojame pirmojo judesio laiką
+
+        updateScores(); // Pirmo įkrovimo metu atnaujinkime rezultatus
+    </script>
+</body>
+</html>

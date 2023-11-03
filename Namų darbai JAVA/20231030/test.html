@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+      max-width: 500px;
+      box-sizing: border-box;
+      padding: 50px 60px;
+      background: rgb(226, 226, 226);
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
+      font-family: Roboto;
+      margin: 0 auto;
+    }
+
+    .count {
+      font-size: 50px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .buttons button {
+      background: black;
+      color: white;
+      border-radius: 3px;
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    .buttons button:hover {
+      background: rgb(97, 97, 97);
+    }
+  </style>
+  <body>
+    <div class="box">
+      <div class="count">10 m 00 s</div>
+      <div class="buttons">
+        <button class="start" onclick="setStart()">Start</button>
+        <button class="stop" onclick="setStop()">Stop</button>
+        <button class="reset" onclick="setReset()">Reset</button>
+      </div>
+    </div>
+    <script>
+      let second = 60;
+      let minute = 9;
+      //   document.querySelector(".count").textContent = `${minute} m ${second} s`;
+      let intervalSecond = null;
+      let intervalMinute = null;
+
+      const setStart = () => {
+        if (!intervalSecond && !intervalMinute) {
+          intervalSecond = setInterval(() => {
+            second--;
+            if (second === -1) {
+              second = 59;
+            }
+
+            if (minute === 0) {
+              if (second === 0) {
+                clearInterval(intervalSecond);
+              }
+            }
+            document.querySelector(
+              ".count"
+            ).textContent = `${minute} m ${second} s`;
+            console.log(`${minute} m ${second} s`);
+          }, 1000);
+
+          intervalMinute = setInterval(() => {
+            minute--;
+            if (minute === 0) {
+              clearInterval(intervalMinute);
+            }
+          }, 60000);
+        }
+      };
+
+      const setStop = () => {
+        clearInterval(intervalMinute);
+        clearInterval(intervalSecond);
+        intervalMinute = null;
+        intervalSecond = null;
+      };
+
+      const setReset = () => {
+        minute = 9
+        second = 60
+        document.querySelector(".count").textContent = `10 m 00 s`;
+        clearInterval(intervalMinute);
+        clearInterval(intervalSecond);
+        intervalMinute = null;
+        intervalSecond = null;
+      };
+
+      //   if (e.target.classList.contains("start")) {
+      //     intervalSecond;
+      //     intervalMinute;
+      //   }
+
+      //   if (e.target.classList.contains("stop")) {
+      //     clearInterval(intervalSecond);
+      //     clearInterval(intervalMinute);
+      //   }
+
+      //   if (e.target.classList.contains("reset")) {
+      //     minute = 9;
+      //     second = 59;
+      //   }
+    </script>
+  </body>
+</html>

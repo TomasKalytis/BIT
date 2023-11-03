@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaidimas</title>
+    <style>
+        .row{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 10vh;
+            /* padding-left: 180px; */
+        }
+        .row1{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* gap: 50px; */
+        }
+        .box {
+            width: 500px;
+            height: 500px;
+            background-color: purple;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .box2area {
+            width: 500px;
+            height: 470px;
+            background-color: purple;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .box2 {
+            width: 40px;
+            height: 40px;
+            background-color: brown;
+            position: absolute;
+        }
+            
+        .count {
+          font-weight: bold;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          font-size: 20px;
+          color: white;
+        }
+        .buttons {
+          display: flex;
+          gap: 20px;
+          justify-content: center;
+        }
+    
+        .buttons button {
+          background: black;
+          color: white;
+          border-radius: 3px;
+          padding: 0.5rem 1rem;
+          border: none;
+          cursor: pointer;
+        }
+        .scores {
+            left: 50px;
+            color: black;
+            font-size: 20px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .result {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 24px;
+        color: black;
+        margin-top: 50px;
+        margin-left: 50px;
+        }
+        .hidden {
+        display: none;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="row1">
+            <div class="scores">
+                <div class="result">
+                    <div>
+                        <div id="player-score">Žaidėjas: 0</div>
+                        <div id="computer-score">Kompiuteris: 0</div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="count">30 s</div>
+                <div clas="box2area">
+                    <div class="box2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="buttons">
+                <button class="start" onclick="setStart()">Start</button>
+            </div>
+        </div>
+        <script>
+            function rand(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1) + min);
+            }
+            let second = 30;
+            let intervalSecond = null;
+            let isGameRunning = false;
+            let playerScore = 0;
+            let computerScore = 30;
+            let lastResultText = "";
+
+            const updateScores = () => {
+                document.querySelector("#player-score").textContent = `Žaidėjas: ${playerScore} taškai`;
+                document.querySelector("#computer-score").textContent = `Kompiuteris: ${computerScore} taškai`;
+            };
+            
+
+            const showResult = (resultText) => {
+                const resultDiv = document.createElement("div");
+                resultDiv.textContent = resultText;
+                document.querySelector(".result").appendChild(resultDiv);
+            };
+
+            const setStart = () => {
+                if (isGameRunning) {
+                    return;  // Jei jau vyksta, neleidžiame pradėti dar kartą
+                }
+                isGameRunning = true;
+                playerScore = 0;
+                computerScore = 30;
+                // resultText = "";
+                // showResult ();
+                updateScores();
+                // if (!intervalSecond) {
+                //     isGameRunning = true;
+                //     playerScore = 0;
+                //     computerScore = 30;
+                //     updateScores();
+                const resultTextElement = document.querySelector(".result");
+                if (resultTextElement) {
+                    resultTextElement.classList.add("hidden");
+                }
+                intervalSecond = setInterval(() => {
+                    second--;
+                    if (second === 1) {
+                        second = 30;
+                    }
+    
+                    document.querySelector(".count").textContent = `${second} s`;
+                    moveBox2Randomly();
+                }, 1000);
+
+                setTimeout(endGame, 30000);
+
+            };
+            
+
+            const box2 = document.querySelector(".box2");
+            let lastPositionChange = 0;
+        
+            const moveBox2Randomly = () => {
+                const now = performance.now();
+                if (isGameRunning && now - lastPositionChange >= 1000) {
+                    const box = document.querySelector(".box");
+                    const maxWidth = box.clientWidth - box2.clientWidth;
+                    const maxHeight = box.clientHeight - box2.clientHeight;
+
+                    const newX = rand(0, maxWidth);
+                    const newY = rand(0, maxHeight);
+
+                    box2.style.left = newX + "px";
+                    box2.style.top = newY + "px";
+                    const randomColor = `rgb(${rand(1, 255)}, ${rand(1, 255)}, ${rand(1, 255)})`;
+                    box2.style.backgroundColor = randomColor;
+                    lastPositionChange = now;
+                };
+            }
+            updateScores();
+            box2.addEventListener("click", () => {
+                if (isGameRunning) {
+                    playerScore++;
+                    computerScore = 30 - playerScore;
+                    showResult();
+                    updateScores();
+                }
+            });
+            function endGame() {
+                isGameRunning = false;
+                clearInterval(intervalSecond);
+                intervalSecond = null;
+                const resultTextElement = document.querySelector(".result");
+                if (resultTextElement) {
+                    resultTextElement.classList.remove("hidden");
+                }
+                resultText = playerScore > computerScore ? "Žaidėjas laimėjo!" :
+                playerScore < computerScore ? "Kompiuteris laimėjo!" : "Lygiosios!";
+                showResult(resultText);
+            }
+        </script>
+    </body>
+    </html>
