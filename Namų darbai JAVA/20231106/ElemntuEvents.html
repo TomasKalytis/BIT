@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElementuEvents</title>
+    <style>
+        .prices {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="header1">
+        <button id="button1">Pakeisti H1</button>
+    </div>
+    <i id="italic">Paspauskite mane!</i>
+    <div class="prices">Spauskite mane!</div>
+    <div id="contacts">
+        <button id="changeColor">Pakeisti spalvą</button>
+        <button id="increaseFont">Padidinti šriftą</button>
+        <button id="resetStyles">Atstatyti stilių</button>
+    </div>
+    <div id="header2">
+        <button id="button2">Pakeisti H2</button>
+    </div>
+    <script>
+        // a. Padaryti tai ką liepia mygtukai Header1 sekcijoje
+        const button1 = document.getElementById("button1");
+        button1.addEventListener("click", () => {
+            const header1 = document.querySelector("h1");
+            header1.textContent = "Pakeistas H1 tekstas";
+        });
+
+        // b. Padaryti, kad paspaudus ant "i" tago jis pakeistų fonto svorį į bold
+        const italic = document.getElementById("italic");
+        italic.addEventListener("click", () => {
+            italic.style.fontWeight = "bold";
+        });
+
+        // c. Padaryti, kad paspaudus ant tago su klase "prices", backgroundas pasikeistų į pilką
+        const prices = document.querySelector(".prices");
+        let isGray = false;
+        prices.addEventListener("click", () => {
+            if (isGray) {
+                prices.style.backgroundColor = "white";
+            } else {
+                prices.style.backgroundColor = "gray";
+            }
+            isGray = !isGray;
+        });
+
+        // d. Padaryti, kad paspaudus ant tago su id "contacts", tam tagui būtų pridėta css savybė color = orange
+        const contacts = document.getElementById("contacts");
+        contacts.addEventListener("click", () => {
+            contacts.style.color = "orange";
+        });
+
+        // e. Padaryti taip, kad paspaudus ant padidinti, esančio tage su id "contacts", tagui su id "contacts" būtų pridėta css savybė fontSize = 20px
+        const increaseFont = document.getElementById("increaseFont");
+        increaseFont.addEventListener("click", () => {
+            contacts.style.fontSize = "20px";
+        });
+
+        // f. Padaryti taip, kad paspaudus ant X, esančio tage su id "contacts", pridėtos tage su id "contacts" savybės būtų panaikintos
+        const resetStyles = document.getElementById("resetStyles");
+        resetStyles.addEventListener("click", () => {
+            contacts.style.color = "";
+            contacts.style.fontSize = "";
+        });
+
+        // g. Padaryti tai ką liepia mygtukai Header2 sekcijoje
+        const button2 = document.getElementById("button2");
+        button2.addEventListener("click", () => {
+            const header2 = document.querySelector("h2");
+            header2.textContent = "Pakeistas H2 tekstas";
+        });
+    </script>
+</body>
+</html>

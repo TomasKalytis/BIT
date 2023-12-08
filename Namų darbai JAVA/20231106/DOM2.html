@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DОМ2</title>
+</head>
+<body>
+    <h2>Žirafos</h2>
+    <ul>
+        <li class="new">Nauja žirafa</li>
+        <li class="new">Nauja žirafa</li>
+        <li>Nauja žirafa</li>
+        <li>Nauja žirafa</li>
+    </ul>
+    <h2>Liūtai</h2>
+    <ul>
+        <li>Naujas liūtas</li>
+        <li class="new">Naujas liūtas</li>
+        <li class="new">Naujas liūtas</li>
+        <li class="new">Naujas liūtas</li>
+        <li class="new">Naujas liūtas</li>
+    </ul>
+    <div class="prices">
+        <h2>Kaina 1</h2>
+        <h2>Kaina 2</h2>
+    </div>
+    <div class="prices">
+        <h2>Kaina 3</h2>
+        <h2 class="first">Kaina 4</h2>
+    </div>
+    <script>
+        
+        // a. Suskaičiuoti kiek yra h2 tagų
+        const h2Tags = document.querySelectorAll("h2");
+        console.log("a. Kiek yra h2 tagų:", h2Tags.length);
+
+        // b. Suskaičiuoti kiek yra h2 tagų, kurie neturi klasės "first"
+        const h2TagsWithoutFirstClass = document.querySelectorAll("h2:not(.first)");
+        console.log("b. Kiek yra h2 tagų be klasės 'first':", h2TagsWithoutFirstClass.length);
+
+        // c. Visus h2 tagus nuspalvinti šviesiai mėlynai
+        h2Tags.forEach(h2 => {
+            h2.style.color = "lightblue";
+        });
+
+        // d. Tagų, kurie yra <div> su klase "prices", viduje esantiems h2 tagams pridėti klasę "price-tag"
+        const priceDivs = document.querySelectorAll("div.prices h2");
+        priceDivs.forEach(h2 => {
+            h2.classList.add("price-tag");
+        });
+
+        // e. Pabraukti visus tagus su klase "new"
+        const newElements = document.querySelectorAll(".new");
+        newElements.forEach(element => {
+            element.style.textDecoration = "underline";
+        });
+
+        // f. Suskaičiuoti kiek yra gyvūnų kategorijų ir žirafų (jos yra ul tagai)
+        const categories = document.querySelectorAll("ul");
+        const giraffes = Array.from(categories).filter(category => {
+            const h2 = category.querySelector("h2");
+            return h2 && h2.textContent === "Žirafos";
+        });
+        console.log("f. Kiek yra gyvūnų kategorijų:", categories.length);
+        console.log("f. Kiek yra žirafų kategorijų:", giraffes.length);
+
+        // g. Tagus ul apibraukite rėmeliais ir uždėkite 15px paddingą viršuje ir apačioje ir 50px paddingą kairėje ir dešinėje
+        categories.forEach(category => {
+            category.style.border = "1px solid black";
+            category.style.padding = "15px 50px";
+        });
+
+        // h. Suskaičiuoti kiek yra naujų gyvūnų (su klase "new")
+        const newAnimals = document.querySelectorAll(".new");
+        console.log("h. Kiek yra naujų gyvūnų:", newAnimals.length);
+
+        // i. Suskaičiuoti atskirai kiek yra naujų gyvūnų kiekvienoje kategorijoje
+        categories.forEach(ul => {
+            const h2 = ul.previousElementSibling;
+            if (h2 && h2.tagName === "H2") {
+                const newAnimals = ul.querySelectorAll(".new");
+                console.log(`i. Kategorijoje "${h2.textContent}" yra ${newAnimals.length} nauji gyvūnai.`);
+            }
+        });
+    </script>
+</body>
+</html>

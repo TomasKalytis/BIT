@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+        .h1color{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Šis h1 tagas bus tamsiai žalios spalvos.</h1>
+    <h2 class="main">Šis h2 tagas turi klasę "main".</h2>
+    <span>Šis span tagas yra h2 viduje.</span>
+    <script>
+        // a. Tamsiai žaliai nuspalvinti h1 tagą
+        const h1Element = document.querySelector("h1");
+        h1Element.style.backgroundColor = "darkgreen";
+
+        // b. Tagui h1 pridėti klasę "small"
+        h1Element.classList.add("small");
+
+        // c. Iš tago h1 pašalinti klasę "main"
+        h1Element.classList.remove("main");
+
+        // d. Tik tam h2 tagui, kuris iškart eina po h1 tago, pridėti klasę "first" ir pašalinti klasę "main"
+        const h2Element = h1Element.nextElementSibling;
+        if (h2Element && h2Element.tagName.toLowerCase() === "h2") {
+            h2Element.classList.add("first");
+            h2Element.classList.remove("main");
+        }
+
+        // e. Pirmam span tagui, kuris yra h2 viduje, sumažinti fonto dydį iki 10px ir nudažyti pilkai
+        const spanElement = h2Element.querySelector("span");
+        if (spanElement) {
+            spanElement.style.fontSize = "10px";
+            spanElement.style.color = "gray";
+        }
+    </script>
+</body>
+</html>

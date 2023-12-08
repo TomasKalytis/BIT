@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search By Breed</title>
+    <style>
+        input{
+            width: 100%;
+            border: 1px solid gray;
+            padding: 1rem 2rem;
+            box-sizing: border-box;
+        }
+        #breed option {
+            text-transform: capitalize;
+        }
+        
+    </style>
+</head>
+<body>
+    <div>
+        <label name="breedsList">Slect Breed</label>
+        <div>
+            <select id="breed" onchange="displayBreedImage()">
+            </select>
+            <div class="result">
+                <img id="breedImage" alt="Breed Image">
+            </div>
+        </div>
+        
+    </div>
+    <script>
+            
+        const selectBreed = document.getElementById("breed")
+        const breedImage = document.getElementById("breedImage");
+
+        // Gauname veislių sąrašą iš API
+        fetch(`https://dog.ceo/api/breeds/list/all`)
+    .then(resp => resp.json())
+    .then(data => {
+        const breeds = data.message;
+        const selectBreed = document.getElementById("breed");
+
+        for (const breed in breeds) {
+            const option = document.createElement("option");
+            option.value = breed;
+            option.textContent = breed;
+            selectBreed.appendChild(option);
+
+            if (breeds[breed].length === 0) {
+                const subOption = document.createElement("option");
+                subOption.value = breed;
+                subOption.textContent = breed;
+                selectBreed.appendChild(subOption);
+            }
+
+            for (const subBreed of breeds[breed]) {
+                const subOption = document.createElement("option");
+                subOption.value = `${breed}/${subBreed}`;
+                subOption.textContent = `${breed} (${subBreed})`;
+                selectBreed.appendChild(subOption);
+                }
+            }
+        })
+        .catch(error => {
+            console.error("Klaida gaunant veislių sąrašą: ", error);
+        });
+        function displayBreedImage(){
+            const selectedBreed = selectBreed.value;
+            const resultDiv = document.querySelector(".result");
+                if (selectedBreed) {
+            fetch(`https://dog.ceo/api/breed/${selectedBreed}/images/random`)
+            .then(resp => resp.json())
+            .then(resp => {
+                if(resp.status === 'error')
+                    return;
+                // Sukuriame naują img elementą ir pridedame jį prie .result div
+                const img = document.createElement("img");
+                    img.src = resp.message;
+                    img.alt = "Breed Image";
+
+                    // Išvalome .result div, kad būtų rodoma tik viena nauja nuotrauka
+                    resultDiv.innerHTML = "";
+                    resultDiv.appendChild(img);
+                });
+        } else {
+            // Jei nepasirinkta veislė, išvalome .result div
+            resultDiv.innerHTML = "";
+        }
+    }
+    </script>
+</body>
+</html>
